@@ -47,6 +47,7 @@ namespace CMP1903M_A01_2223
 
                 }
                 pack.pack = shuffledPack;
+                deal(shuffledPack);
                 return true;
 
             }
@@ -56,7 +57,7 @@ namespace CMP1903M_A01_2223
                 Random randomSide = new Random();
                 Random randomAmount = new Random();
                 int x = randomAmount.Next(2, 24);
-                for (int y = 0; x < 24; x++)
+                for (int y = 0; y < x; y++)
                 {
                     int midpoint = pack.pack.Count / 2;
                     List<Card> topHalf = pack.pack.GetRange(0, midpoint);
@@ -80,6 +81,7 @@ namespace CMP1903M_A01_2223
                         }
                     }
                     pack.pack = shuffledPack;
+                    deal(shuffledPack);
 
 
                 }
@@ -108,6 +110,7 @@ namespace CMP1903M_A01_2223
             var deal = list.Take(1);
             deal = list.Take(1);
             Console.WriteLine("You have been dealt" + deal);
+            return (Card)deal;
         }
         public static List<Card> dealCard(int amount, List<Card> list)
         {
@@ -116,7 +119,7 @@ namespace CMP1903M_A01_2223
             {
                 Console.WriteLine("You have been dealt" + deal);
             }
-
+            return list;
             //Deals the number of cards specified by 'amount'
 
         }
