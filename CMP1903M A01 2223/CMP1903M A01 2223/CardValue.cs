@@ -6,7 +6,22 @@ using System.Threading.Tasks;
 
 namespace CMP1903M_A01_2223
 {
-    internal class Class1
+    public enum CardValue
     {
+
+
+        Ace,
+        Two,
+        Three,
+        Four,
+        Five,
+        Six,
+        Seven,
+        Eight,
+        Nine,
+        Ten,
+        Jack,
+        Queen,
+        King
     }
 }

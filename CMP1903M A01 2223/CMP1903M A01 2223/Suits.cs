@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace CMP1903M_A01_2223
 {
-    internal class Class1
+    public enum Suits
     {
+        Clubs,
+        Diamonds,
+        Hearts,
+        Spades
     }
 }
