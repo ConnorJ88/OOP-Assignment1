@@ -1,60 +1,65 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using CMP1903M_A01_2223;
+using static CMP1903M_A01_2223.Card;
 
 namespace CMP1903M_A01_2223
 {
     class Pack
     {
-        public List<Card> pack;
+
+
+
+
+        public List<Card> pack { get; set; }
+
+        // Initialising the initial card pack
 
         public Pack()
         {
-            //Creates new list of Cards
             pack = new List<Card>();
-            {
-                Pack deck = new Pack();
-                for (int suitIndex = 0; suitIndex < 4; suitIndex++)
-                {
-                    for (int cardNumberIndex = 0; cardNumberIndex < 13; cardNumberIndex++)
-                    {
-                        pack.Add(new Card((CardValue)cardNumberIndex, (Suits)suitIndex));
-                    }
-                }
 
+            for (int i = 0; i < 52; i++)
+            {
+                pack.Add(new Card(i));
             }
         }
 
 
 
+    
+
 
         public static bool shuffleCardPack(int typeOfShuffle)
         {
             //Shuffles the pack based on the type of shuffle
-
+            
             if (typeOfShuffle == 1)
             {
                 Pack pack = new Pack();
                 Random random = new Random();
                 List<Card> shuffledPack = new List<Card>();
-                for (int length = 52; length > 0; length--)
+                for (int length = pack.pack.Count; length > 0; length--)
+
                 {
-                    int x = random.Next(0, length + 1);
-                    (pack.pack[x], pack.pack[length]) = (pack.pack[length], pack.pack[x]);
+                    int x = random.Next(length);
+                    var temp = pack.pack[x];
+                    shuffledPack.Add(temp);
+                    pack.pack.RemoveAt(x);
 
                 }
                 pack.pack = shuffledPack;
-                deal(shuffledPack);
+                deal(pack.pack);
                 return true;
-
             }
             else if (typeOfShuffle == 2)
             {
-                Pack pack = new Pack();
-                Random randomSide = new Random();
+                Pack pack = new Pack();               
+                Random side = new Random();
                 Random randomAmount = new Random();
                 int x = randomAmount.Next(2, 24);
                 for (int y = 0; y < x; y++)
@@ -63,7 +68,7 @@ namespace CMP1903M_A01_2223
                     List<Card> topHalf = pack.pack.GetRange(0, midpoint);
                     List<Card> bottomHalf = pack.pack.GetRange(midpoint, midpoint);
                     List<Card> shuffledPack = new List<Card>();
-                    int decision = randomSide.Next(1, 2);
+                    int decision = randomAmount.Next(1, 2);
                     if (decision == 1)
                     {
                         for (int i = 0; i < midpoint; i++)
@@ -81,7 +86,7 @@ namespace CMP1903M_A01_2223
                         }
                     }
                     pack.pack = shuffledPack;
-                    deal(shuffledPack);
+                    deal(pack.pack);
 
 
                 }
@@ -109,22 +114,26 @@ namespace CMP1903M_A01_2223
             //Deals one card
             var deal = list.Take(1);
             deal = list.Take(1);
-            Console.WriteLine("You have been dealt" + deal);
-            return (Card)deal;
+            foreach (Card card in deal)
+            {
+                Console.WriteLine(card.Value + " of " + card.Suit);
+            }
+            return deal.First();
         }
         public static List<Card> dealCard(int amount, List<Card> list)
         {
             var deal = list.Take(amount);
             foreach (Card card in deal)
             {
-                Console.WriteLine("You have been dealt" + deal);
+                Console.WriteLine(card.Value + " of " + card.Suit);
             }
-            return list;
+            return deal.ToList();
             //Deals the number of cards specified by 'amount'
 
         }
     }
 }
+
     
 
 

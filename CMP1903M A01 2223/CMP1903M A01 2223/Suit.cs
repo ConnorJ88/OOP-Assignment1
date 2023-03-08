@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace CMP1903M_A01_2223
 {
-    public enum Suits
+   public enum Suit
     {
-        Clubs,
-        Diamonds,
         Hearts,
+        Diamonds,
+        Clubs,
         Spades
     }
 }
