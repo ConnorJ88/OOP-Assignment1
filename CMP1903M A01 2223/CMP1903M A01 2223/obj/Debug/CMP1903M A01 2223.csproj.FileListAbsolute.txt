@@ -1,0 +1,3 @@
+C:\Users\networkadmin\Source\Repos\OOP-Assignment-1\CMP1903M A01 2223\CMP1903M A01 2223\obj\Debug\CMP1903M A01 2223.csproj.AssemblyReference.cache
+C:\Users\networkadmin\Source\Repos\OOP-Assignment-1\CMP1903M A01 2223\CMP1903M A01 2223\obj\Debug\CMP1903M A01 2223.csproj.SuggestedBindingRedirects.cache
+C:\Users\networkadmin\Source\Repos\OOP-Assignment-1\CMP1903M A01 2223\CMP1903M A01 2223\obj\Debug\CMP1903M A01 2223.csproj.CoreCompileInputs.cache

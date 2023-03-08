@@ -17,10 +17,8 @@ namespace CMP1903M_A01_2223
             bool isValid = int.TryParse(userInput, out int typeOfShuffle);
             if (isValid)
             {
-                if (typeOfShuffle == 1)
-                {
-                    Pack.shuffleCardPack(1);
-                }
+            Pack.shuffleCardPack(typeOfShuffle);
+                
             }
         }
     }
