@@ -51,25 +51,43 @@ namespace CMP1903M_A01_2223
 
                 }
                 pack.pack = shuffledPack;
-                Console.WriteLine("How many Cards do you want?");
-                string Input = Console.ReadLine();
-                bool Valid = int.TryParse(Input, out int amount); //Error handling if input can't be a variable
-                if (Valid)
+                bool inRange = false;
+                while (inRange != true)//loops until a number from 1 to 52 is entered
                 {
-                    if (amount == 1)
-                    {
-                        deal(pack.pack);
-                    }
 
-                    else if (2 <= amount)
-                    {
-                        dealCard(amount, pack.pack);
 
+                    Console.WriteLine("How many Cards do you want?");
+                    string Input = Console.ReadLine();
+                    bool Valid = int.TryParse(Input, out int amount); //Error handling if input can't be converted to int
+                    if (Valid)
+                    {
+                        if (amount <= 52 && 1 <= amount) //compares amount entered to ensure it's within range
+                        {
+                            if (amount == 1)
+                            {
+                                deal(pack.pack); //if user inputs 1, it calls deal
+                                inRange = true;
+                                break;
+                            }
+
+                            else if (2 <= amount)
+                            {
+                                dealCard(amount, pack.pack); //if the user input is greater than 1, it calls deal card
+                                inRange = true;
+                                break;
+
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Please select a number from 1 to 52");
+
+                        }
                     }
-                }
-                else
-                {
-                    Console.WriteLine("Enter a valid Number");
+                    else
+                    {
+                        Console.WriteLine("Enter a valid Number");
+                    }
                 }
                 return true;
             }
@@ -101,25 +119,43 @@ namespace CMP1903M_A01_2223
                     shuffledPack.Add(secondHalf[i]);
                 }
                 pack.pack = shuffledPack;
-                Console.WriteLine("How many Cards do you want?");
-                string Input = Console.ReadLine();
-                bool Valid = int.TryParse(Input, out int amount);
-                if (Valid)
+                bool inRange = false;
+                while (inRange != true)
                 {
-                    if (amount == 1)
-                    {
-                        deal(pack.pack);
-                    }
 
-                    else if (2 <= amount)
-                    {
-                        dealCard(amount, pack.pack);
 
+                    Console.WriteLine("How many Cards do you want?");
+                    string Input = Console.ReadLine();
+                    bool Valid = int.TryParse(Input, out int amount);
+                    if (Valid)
+                    {
+                        if (amount <= 52 && 1 <= amount)
+                        {
+                            if (amount == 1)
+                            {
+                                deal(pack.pack);
+                                inRange = true;
+                                break;
+                            }
+
+                            else if (2 <= amount)
+                            {
+                                dealCard(amount, pack.pack);
+                                inRange = true;
+                                break;
+
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Please select a number from 1 to 52");
+
+                        }
                     }
-                }
-                else
-                {
-                    Console.WriteLine("Enter a valid Number");
+                    else
+                    {
+                        Console.WriteLine("Enter a valid Number");
+                    }
                 }
                 return true;
             }
@@ -127,25 +163,41 @@ namespace CMP1903M_A01_2223
             else if (typeOfShuffle == 3)
             {
                 Pack pack = new Pack();
-                Console.WriteLine("How many Cards do you want?");
-                string Input = Console.ReadLine();
-                bool Valid = int.TryParse(Input, out int amount);
-                if (Valid)
+                bool inRange = false;
+                while (inRange != true)
                 {
-                    if (amount == 1)
-                    {
-                        deal(pack.pack);
-                    }
+                    Console.WriteLine("How many Cards do you want?");
+                    string Input = Console.ReadLine();
+                    bool Valid = int.TryParse(Input, out int amount);
+                    if (Valid)
+                    {                    
+                            if (amount <= 52 && 1 <= amount) 
+                            {
+                                if (amount == 1)
+                                {
+                                    deal(pack.pack);
+                                    inRange = true;
+                                    break;
+                                }
 
-                    else if (2 <= amount)
-                    {
-                        dealCard(amount, pack.pack);
+                                else if (2 <= amount)
+                                {
+                                    dealCard(amount, pack.pack);
+                                    inRange = true;
+                                    break;
 
+                                }
+                            }
+                            else
+                            {
+                                Console.WriteLine("Please select a number from 1 to 52");
+                            
+                            }               
                     }
-                }
-                else
-                {
-                    Console.WriteLine("Enter a valid Number");
+                    else
+                    {
+                        Console.WriteLine("Enter a valid Number");
+                    }
                 }
                 return true;
 
