@@ -21,7 +21,7 @@ namespace CMP1903M_A01_2223
                 bool isValid = int.TryParse(userInput, out int typeOfShuffle); //ensures input is a number
                 if (isValid)
                 {
-                    if (typeOfShuffle >= 1 && typeOfShuffle <= 3)
+                    if (typeOfShuffle >= 1 && typeOfShuffle <= 3)// ensures a valid option is chosen
                     {
                         Pack.shuffleCardPack(typeOfShuffle); //sends choice to shuffleCardPack
                         inRange = true;

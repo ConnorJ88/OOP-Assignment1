@@ -14,9 +14,6 @@ namespace CMP1903M_A01_2223
     class Pack
     {
 
-
-
-
         public List<Card> pack { get; set; }
 
         // Initialising the initial card pack
