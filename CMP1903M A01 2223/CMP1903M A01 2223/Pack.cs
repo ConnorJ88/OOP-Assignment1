@@ -78,24 +78,26 @@ namespace CMP1903M_A01_2223
                 Pack pack = new Pack();
                 Random random = new Random();
                 List<Card> shuffledPack = new List<Card>();
-                int half = pack.pack.Count / 2;
+                
                 List<Card> firstHalf = new List<Card>();
                 List<Card> secondHalf = new List<Card>();
-                int count = 0;
+                
                 for (int i = 0; i <= 25; i ++)
                 {
+                   
                     firstHalf.Add(pack.pack[i]);
-                    secondHalf.Add(pack.pack[i]);
-                    firstHalf[i] = pack.pack[i];
-                    secondHalf[i] = pack.pack[i+26];
+                    
                 }
-                for (int i = 0; i <= 25; i = i + 1)
+                for (int i = 26; i <= 51; i++)
                 {
-                    shuffledPack.Add(firstHalf[count]);
-                    shuffledPack.Add(secondHalf[count]);
-                    count++;
+                    secondHalf.Add(pack.pack[i]);
                 }
-
+                for (int i = 0;i<= 25; i++) 
+                {
+                    shuffledPack.Add(firstHalf[i]);
+                    shuffledPack.Add(secondHalf[i]);
+                }
+                pack.pack = shuffledPack;
                 Console.WriteLine("How many Cards do you want?");
                 string Input = Console.ReadLine();
                 bool Valid = int.TryParse(Input, out int amount);
@@ -116,10 +118,6 @@ namespace CMP1903M_A01_2223
                 {
                     Console.WriteLine("Enter a valid Number");
                 }
-
-
-
-
                 return true;
             }
             else if (typeOfShuffle == 3)
