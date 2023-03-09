@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using CMP1903M_A01_2223;
 using static CMP1903M_A01_2223.Card;
@@ -28,9 +29,6 @@ namespace CMP1903M_A01_2223
                 pack.Add(new Card(i));
             }
         }
-
-
-
     
 
 
@@ -79,25 +77,24 @@ namespace CMP1903M_A01_2223
             {
                 Pack pack = new Pack();
                 Random random = new Random();
-                
-
-                int midpoint = pack.pack.Count / 2;
-                    List<Card> topHalf = pack.pack.GetRange(0, midpoint);
-                    List<Card> bottomHalf = pack.pack.GetRange(midpoint, midpoint);
-                    List<Card> shuffledPack = new List<Card>();
-                    for (int i = 0; i < pack.pack.Count; i++)
+                List<Card> shuffledPack = new List<Card>();
+                int half = pack.pack.Count / 2;
+                List<Card> firstHalf = new List<Card>();
+                List<Card> secondHalf = new List<Card>();
+                int count = 0;
+                for (int i = 0; i <= 25; i ++)
                 {
-                    for (int x = 0; x < midpoint; x++)
-                    {
-                        var temp = topHalf[topHalf.Count];
-                        shuffledPack.Add(temp);
-                        topHalf.RemoveAt(x);
-                        var temporary = bottomHalf[bottomHalf.Count];
-                        shuffledPack.Add(temporary);
-                        bottomHalf.RemoveAt(x);
-                    }
+                    firstHalf.Add(pack.pack[i]);
+                    secondHalf.Add(pack.pack[i]);
+                    firstHalf[i] = pack.pack[i];
+                    secondHalf[i] = pack.pack[i+26];
                 }
-                    pack.pack = shuffledPack;
+                for (int i = 0; i <= 25; i = i + 1)
+                {
+                    shuffledPack.Add(firstHalf[count]);
+                    shuffledPack.Add(secondHalf[count]);
+                    count++;
+                }
 
                 Console.WriteLine("How many Cards do you want?");
                 string Input = Console.ReadLine();
