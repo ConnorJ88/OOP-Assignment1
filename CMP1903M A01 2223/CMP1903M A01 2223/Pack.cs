@@ -10,6 +10,7 @@ using static CMP1903M_A01_2223.Card;
 
 namespace CMP1903M_A01_2223
 {
+    //Represesents Pack of Cards
     class Pack
     {
 
@@ -26,25 +27,24 @@ namespace CMP1903M_A01_2223
 
             for (int i = 0; i < 52; i++)
             {
-                pack.Add(new Card(i));
+                pack.Add(new Card(i)); //Adds Cards individually until a total of 52
             }
         }
-    
 
 
+        //Shuffles the pack based on the type of shuffle
         public static bool shuffleCardPack(int typeOfShuffle)
         {
-            //Shuffles the pack based on the type of shuffle
-            
+            // Fisher Yates Shuffle           
             if (typeOfShuffle == 1)
             {
-                Pack pack = new Pack();
+                Pack pack = new Pack(); //Ordered set of Cards
                 Random random = new Random();
-                List<Card> shuffledPack = new List<Card>();
+                List<Card> shuffledPack = new List<Card>(); //PAck to hold shuffled cards
                 for (int length = pack.pack.Count; length > 0; length--)
 
                 {
-                    int x = random.Next(length);
+                    int x = random.Next(length); //generates random index to add to empty list
                     var temp = pack.pack[x];
                     shuffledPack.Add(temp);
                     pack.pack.RemoveAt(x);
@@ -53,7 +53,7 @@ namespace CMP1903M_A01_2223
                 pack.pack = shuffledPack;
                 Console.WriteLine("How many Cards do you want?");
                 string Input = Console.ReadLine();
-                bool Valid = int.TryParse(Input, out int amount);
+                bool Valid = int.TryParse(Input, out int amount); //Error handling if input can't be a variable
                 if (Valid)
                 {
                     if (amount == 1)
@@ -73,25 +73,28 @@ namespace CMP1903M_A01_2223
                 }
                 return true;
             }
+            // Riffle Shuffle
             else if (typeOfShuffle == 2)
             {
-                Pack pack = new Pack();
+                Pack pack = new Pack(); 
                 Random random = new Random();
                 List<Card> shuffledPack = new List<Card>();
-                
-                List<Card> firstHalf = new List<Card>();
+                //Generates two empty lists to store half of each cards
+                List<Card> firstHalf = new List<Card>(); 
                 List<Card> secondHalf = new List<Card>();
-                
+                //Adds first half of pack
                 for (int i = 0; i <= 25; i ++)
                 {
                    
                     firstHalf.Add(pack.pack[i]);
                     
                 }
+                //Second half of pack
                 for (int i = 26; i <= 51; i++)
                 {
                     secondHalf.Add(pack.pack[i]);
                 }
+                //Iterates between both lists until 52 are added (starts indexing at 0)
                 for (int i = 0;i<= 25; i++) 
                 {
                     shuffledPack.Add(firstHalf[i]);
@@ -120,6 +123,7 @@ namespace CMP1903M_A01_2223
                 }
                 return true;
             }
+            // If parameter is 3 does no shuffle
             else if (typeOfShuffle == 3)
             {
                 Pack pack = new Pack();
@@ -162,21 +166,22 @@ namespace CMP1903M_A01_2223
             deal = list.Take(1);
             foreach (Card card in deal)
             {
-                Console.WriteLine(Card.Display(card.Value, card.Suit));
+                Console.WriteLine(Card.Display(card.Value, card.Suit)); // Calls Card.Display in order to format the card
             }
             Console.ReadLine();
-            return deal.First();
+            return deal.First(); //returns first number 
         }
         public static List<Card> dealCard(int amount, List<Card> list)
         {
+            //Deals Specified AMount of Cards
             var deal = list.Take(amount);
             foreach (Card card in deal)
             {
                 Console.WriteLine(Card.Display(card.Value, card.Suit));
             }
             Console.ReadLine();
-            return deal.ToList();
-            //Deals the number of cards specified by 'amount'
+            return deal.ToList(); //returns list of numbers
+            
 
         }
     }

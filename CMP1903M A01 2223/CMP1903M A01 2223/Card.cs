@@ -25,6 +25,7 @@ namespace CMP1903M_A01_2223
         public Card(int val)
         {
             // Generating the corresponding cards to values and suits
+            //Uses principle that each suit has 13 cards
             Value = (val % 13) + 1;
             if (val / 13 == 0)
             {
@@ -44,10 +45,10 @@ namespace CMP1903M_A01_2223
             }
         }
 
-            //Custom added method to display Ace, Jack, Queen or King as well as making the numbers in the same format
+            //formats the number just before output
        public static string Display(int Value, string Suit)
        {
-
+            //Compares values and changes them if the value appears in list
             {
                 if (Value == 1)
                 {
@@ -66,7 +67,7 @@ namespace CMP1903M_A01_2223
                     return "King of " + Suit;
                 }
                 else
-                {
+                { //formats the card before display
                     return Value + " of " + Suit;
                 }
             }
