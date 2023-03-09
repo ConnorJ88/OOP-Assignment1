@@ -53,50 +53,101 @@ namespace CMP1903M_A01_2223
 
                 }
                 pack.pack = shuffledPack;
-                deal(pack.pack);
+                Console.WriteLine("How many Cards do you want?");
+                string Input = Console.ReadLine();
+                bool Valid = int.TryParse(Input, out int amount);
+                if (Valid)
+                {
+                    if (amount == 1)
+                    {
+                        deal(pack.pack);
+                    }
+
+                    else if (2 <= amount)
+                    {
+                        dealCard(amount, pack.pack);
+
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Enter a valid Number");
+                }
                 return true;
             }
             else if (typeOfShuffle == 2)
             {
-                Pack pack = new Pack();               
-                Random side = new Random();
-                Random randomAmount = new Random();
-                int x = randomAmount.Next(2, 24);
-                for (int y = 0; y < x; y++)
-                {
-                    int midpoint = pack.pack.Count / 2;
+                Pack pack = new Pack();
+                Random random = new Random();
+                
+
+                int midpoint = pack.pack.Count / 2;
                     List<Card> topHalf = pack.pack.GetRange(0, midpoint);
                     List<Card> bottomHalf = pack.pack.GetRange(midpoint, midpoint);
                     List<Card> shuffledPack = new List<Card>();
-                    int decision = randomAmount.Next(1, 2);
-                    if (decision == 1)
+                    for (int i = 0; i < pack.pack.Count; i++)
+                {
+                    for (int x = 0; x < midpoint; x++)
                     {
-                        for (int i = 0; i < midpoint; i++)
-                        {
-                            shuffledPack.Add(topHalf[i]);
-                            shuffledPack.Add(bottomHalf[i]);
-                        }
+                        var temp = topHalf[topHalf.Count];
+                        shuffledPack.Add(temp);
+                        topHalf.RemoveAt(x);
+                        var temporary = bottomHalf[bottomHalf.Count];
+                        shuffledPack.Add(temporary);
+                        bottomHalf.RemoveAt(x);
                     }
-                    else if (decision == 2)
-                    {
-                        for (int i = 0; i < midpoint; i++)
-                        {
-                            shuffledPack.Add(bottomHalf[i]);
-                            shuffledPack.Add(topHalf[i]);
-                        }
-                    }
-                    pack.pack = shuffledPack;
-                    deal(pack.pack);
-
-
                 }
+                    pack.pack = shuffledPack;
+
+                Console.WriteLine("How many Cards do you want?");
+                string Input = Console.ReadLine();
+                bool Valid = int.TryParse(Input, out int amount);
+                if (Valid)
+                {
+                    if (amount == 1)
+                    {
+                        deal(pack.pack);
+                    }
+
+                    else if (2 <= amount)
+                    {
+                        dealCard(amount, pack.pack);
+
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Enter a valid Number");
+                }
+
+
+
 
                 return true;
             }
             else if (typeOfShuffle == 3)
             {
                 Pack pack = new Pack();
-                deal(pack.pack);
+                Console.WriteLine("How many Cards do you want?");
+                string Input = Console.ReadLine();
+                bool Valid = int.TryParse(Input, out int amount);
+                if (Valid)
+                {
+                    if (amount == 1)
+                    {
+                        deal(pack.pack);
+                    }
+
+                    else if (2 <= amount)
+                    {
+                        dealCard(amount, pack.pack);
+
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Enter a valid Number");
+                }
                 return true;
 
             }
@@ -116,8 +167,9 @@ namespace CMP1903M_A01_2223
             deal = list.Take(1);
             foreach (Card card in deal)
             {
-                Console.WriteLine(card.Value + " of " + card.Suit);
+                Console.WriteLine(Card.Display(card.Value, card.Suit));
             }
+            Console.ReadLine();
             return deal.First();
         }
         public static List<Card> dealCard(int amount, List<Card> list)
@@ -125,8 +177,9 @@ namespace CMP1903M_A01_2223
             var deal = list.Take(amount);
             foreach (Card card in deal)
             {
-                Console.WriteLine(card.Value + " of " + card.Suit);
+                Console.WriteLine(Card.Display(card.Value, card.Suit));
             }
+            Console.ReadLine();
             return deal.ToList();
             //Deals the number of cards specified by 'amount'
 

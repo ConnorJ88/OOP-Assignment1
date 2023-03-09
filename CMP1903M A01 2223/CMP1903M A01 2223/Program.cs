@@ -26,7 +26,11 @@ namespace CMP1903M_A01_2223
             {
                 Console.WriteLine("Invalid Input");
             }
-            Console.ReadKey(); 
+            
+            
+            
+            
+            
         }
     }
 }
